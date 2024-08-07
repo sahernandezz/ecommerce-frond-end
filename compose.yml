@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: demo-docker-nextjs-dev
+    environment:
+      - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+
+volumes:
+  node_modules:
