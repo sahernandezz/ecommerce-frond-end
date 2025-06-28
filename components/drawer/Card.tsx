@@ -1,3 +1,5 @@
+'use client'
+
 import {ProductAddCart} from "@/lib/types";
 import {currencyFormatter} from "@/lib/currencyFormatter";
 import {useCart} from "@/context/cart";
