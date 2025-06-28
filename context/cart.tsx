@@ -15,19 +15,20 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-    const [cart, setCart] = useState<ProductAddCart[]>([]);
-    const total = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
-
-    useEffect(() => {
-        const storedCart = localStorage.getItem('cart');
-        if (storedCart) {
-            try {
-                setCart(JSON.parse(storedCart));
-            } catch (err) {
-                console.error('Error parsing cart from localStorage', err);
+    const [cart, setCart] = useState<ProductAddCart[]>(() => {
+        if (typeof window !== 'undefined') {
+            const storedCart = localStorage.getItem('cart');
+            if (storedCart) {
+                try {
+                    return JSON.parse(storedCart) as ProductAddCart[];
+                } catch (err) {
+                    console.error('Error parsing cart from localStorage', err);
+                }
             }
         }
-    }, []);
+        return [];
+    });
+    const total = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
