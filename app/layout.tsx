@@ -6,6 +6,8 @@ import {ThemeProvider} from "next-themes";
 import { CartProvider } from "@/context/cart";
 import { DrawerProvider } from "@/context/drawer";
 import { AuthProvider } from "@/context/auth";
+import { LoginModalProvider } from "@/context/login-modal";
+import { LoginModal } from "@/components/LoginModal";
 import {Drawer} from "@/components/drawer";
 
 export const metadata: Metadata = {
@@ -24,14 +26,17 @@ export default function RootLayout({
             className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
         <ThemeProvider attribute="class">
             <AuthProvider>
-                <CartProvider>
-                    <DrawerProvider>
-                        <Navbar/>
-                        <Drawer/>
-                        <main>{children}</main>
-                        <Footer/>
-                    </DrawerProvider>
-                </CartProvider>
+                <LoginModalProvider>
+                    <CartProvider>
+                        <DrawerProvider>
+                            <Navbar/>
+                            <LoginModal/>
+                            <Drawer/>
+                            <main>{children}</main>
+                            <Footer/>
+                        </DrawerProvider>
+                    </CartProvider>
+                </LoginModalProvider>
             </AuthProvider>
         </ThemeProvider>
         </body>
