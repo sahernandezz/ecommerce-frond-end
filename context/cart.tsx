@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { ProductAddCart } from '@/lib/types';
 
 interface CartContextType {
@@ -16,7 +16,26 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cart, setCart] = useState<ProductAddCart[]>([]);
+    const [initialized, setInitialized] = useState(false);
     const total = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
+
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            try {
+                setCart(JSON.parse(storedCart) as ProductAddCart[]);
+            } catch (err) {
+                console.error('Error parsing cart from localStorage', err);
+            }
+        }
+        setInitialized(true);
+    }, []);
+
+    useEffect(() => {
+        if (initialized) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }, [cart, initialized]);
 
     const addToCart = (product: ProductAddCart) => {
         setCart((prevCart) => {
