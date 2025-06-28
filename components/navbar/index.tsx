@@ -5,12 +5,14 @@ import Link from "next/link";
 import {useTheme} from "next-themes";
 import {useDrawer} from "@/context/drawer";
 import {useCart} from "@/context/cart";
+import {useLoginModal} from "@/context/login-modal";
 
 export const Navbar = () => {
 
     const {theme, setTheme} = useTheme();
     const {open, setOpen} = useDrawer();
     const {cart} = useCart();
+    const { setOpen: setLoginOpen } = useLoginModal();
 
     return (
         <>
@@ -84,7 +86,7 @@ export const Navbar = () => {
                             </div>
                         </button>
 
-                        <button aria-label="Open cart">
+                        <button aria-label="Login" onClick={() => setLoginOpen(true)}>
                             <div
                                 className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

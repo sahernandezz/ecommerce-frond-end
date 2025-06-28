@@ -1,8 +1,15 @@
-import {GraphQLClient, gql} from 'graphql-request';
+import { GraphQLClient, gql } from 'graphql-request';
 
-const endpoint = 'http://localhost:8080/graphql'; // Ensure this is the correct endpoint
+const endpoint = 'http://localhost:8080/graphql';
 
-const client = new GraphQLClient(endpoint);
+let authToken: string | null = null;
+export const setAuthToken = (token: string | null) => {
+    authToken = token;
+};
+
+const getClient = () => new GraphQLClient(endpoint, {
+    headers: authToken ? { Authorization: `Bearer ${authToken}` } : {},
+});
 
 const GET_ALL_PRODUCTS_ACTIVE = gql`
   query {
@@ -16,7 +23,7 @@ const GET_ALL_PRODUCTS_ACTIVE = gql`
 `;
 export const getAllProductsActive = async () => {
     try {
-        const data: any = await client.request(GET_ALL_PRODUCTS_ACTIVE);
+        const data: any = await getClient().request(GET_ALL_PRODUCTS_ACTIVE);
         return data.getAllProductsActive;
     } catch (error) {
         console.error('Error fetching items:', error);
@@ -37,7 +44,7 @@ const GET_ALL_PRODUCTS_ACTIVE_BY_CATEGORY_ID = gql`
 
 export const getAllProductsActiveByCategoryId = async (categoryId: string) => {
     try {
-        const data: any = await client.request(GET_ALL_PRODUCTS_ACTIVE_BY_CATEGORY_ID, {categoryId});
+        const data: any = await getClient().request(GET_ALL_PRODUCTS_ACTIVE_BY_CATEGORY_ID, {categoryId});
         return data.getAllProductsActiveByCategoryId;
     } catch (error) {
         console.error('Error fetching items:', error);
@@ -61,7 +68,7 @@ export const getAllCategoriesActive = async () => {
     }
 
     try {
-        const data: any = await client.request(GET_ALL_CATEGORIES_ACTIVE);
+        const data: any = await getClient().request(GET_ALL_CATEGORIES_ACTIVE);
         categoriesCache = data.getAllCategoriesActive;
         return categoriesCache;
     } catch (error) {
@@ -89,7 +96,7 @@ const GET_PRODUCT_BY_ID = gql`
 `;
 export const getProductById = async (id: string) => {
     try {
-        const data: any = await client.request(GET_PRODUCT_BY_ID, {id});
+        const data: any = await getClient().request(GET_PRODUCT_BY_ID, {id});
         return data.getProductById;
     } catch (error) {
         console.error('Error fetching items:', error);
@@ -110,7 +117,7 @@ const GET_ALL_PRODUCTS_ACTIVE_BY_NAME = gql`
 `;
 export const getAllProductsActiveByName = async (name: string) => {
     try {
-        const data: any = await client.request(GET_ALL_PRODUCTS_ACTIVE_BY_NAME, {name});
+        const data: any = await getClient().request(GET_ALL_PRODUCTS_ACTIVE_BY_NAME, {name});
         return data.getAllProductsActiveByName;
     } catch (error) {
         console.error('Error fetching items:', error);
