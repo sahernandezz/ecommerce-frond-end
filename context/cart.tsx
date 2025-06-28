@@ -20,14 +20,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const addToCart = (product: ProductAddCart) => {
         setCart((prevCart) => {
-            const productIndex = prevCart.findIndex((p) => p.id === product.id);
-            if (productIndex === -1) {
-                return [...prevCart, { ...product, quantity: 1 }];
-            } else {
-                const newCart = [...prevCart];
-                newCart[productIndex].quantity += 1;
-                return newCart;
+            const found = prevCart.find((p) => p.id === product.id);
+            if (found) {
+                return prevCart.map((p) =>
+                    p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+                );
             }
+            return [...prevCart, { ...product, quantity: 1 }];
         });
     };
 
@@ -36,29 +35,23 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const addQuantity = (productId: string) => {
-        setCart((prevCart) => {
-            const productIndex = prevCart.findIndex((p) => p.id.toString() === productId);
-            if (productIndex !== -1) {
-                const newCart = [...prevCart];
-                newCart[productIndex].quantity += 1;
-                return newCart;
-            }
-            return prevCart;
-        });
+        setCart((prevCart) =>
+            prevCart.map((p) =>
+                p.id.toString() === productId ? { ...p, quantity: p.quantity + 1 } : p
+            )
+        );
     };
 
     const subtractQuantity = (productId: string) => {
         setCart((prevCart) => {
-            const productIndex = prevCart.findIndex((p) => p.id.toString() === productId);
-            if (productIndex !== -1) {
-                const newCart = [...prevCart];
-                if (newCart[productIndex].quantity === 1) {
-                    return newCart.filter((product) => product.id.toString() !== productId);
-                }
-                newCart[productIndex].quantity -= 1;
-                return newCart;
+            const product = prevCart.find((p) => p.id.toString() === productId);
+            if (!product) return prevCart;
+            if (product.quantity === 1) {
+                return prevCart.filter((p) => p.id.toString() !== productId);
             }
-            return prevCart;
+            return prevCart.map((p) =>
+                p.id.toString() === productId ? { ...p, quantity: p.quantity - 1 } : p
+            );
         });
     };
 
