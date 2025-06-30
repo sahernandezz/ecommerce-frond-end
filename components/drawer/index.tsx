@@ -35,6 +35,21 @@ export const Drawer = () => {
                                     >
                                         <span className="absolute -inset-2.5"/>
                                         <span className="sr-only">Close panel</span>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            aria-hidden="true"
+                                            className="h-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M6 18 18 6M6 6l12 12"
+                                            />
+                                        </svg>
                                     </button>
                                 </div>
                             </TransitionChild>
