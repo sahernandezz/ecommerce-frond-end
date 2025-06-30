@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.9"
 
 services:
   dev:
@@ -7,13 +7,11 @@ services:
       dockerfile: Dockerfile
     container_name: demo-docker-nextjs-dev
     environment:
-      - WATCHPACK_POLLING=true
+      WATCHPACK_POLLING: "true"
     volumes:
       - .:/app
       - /app/node_modules
       - /app/.next
+    command: pnpm dev
     ports:
       - "3000:3000"
-
-volumes:
-  node_modules:
