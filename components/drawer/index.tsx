@@ -57,25 +57,30 @@ export const Drawer = () => {
                             <div
                                 className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col overflow-y-auto border-l border-neutral-200 bg-white/80 p-6 text-black backdrop-blur-xl md:w-[450px] dark:border-neutral-700 dark:bg-black/80 dark:text-white">
 
+                                <div className="mb-4 flex items-center justify-between">
+                                    <p className="text-lg font-semibold">My Cart</p>
+                                    <button aria-label="Close cart" onClick={() => setOpen(false)}>
+                                        <div
+                                            className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth="1.5"
+                                                stroke="currentColor"
+                                                aria-hidden="true"
+                                                data-slot="icon"
+                                                className="h-6 transition-all ease-in-out hover:scale-110"
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+
                                 {
                                     cart.length === 0 && (
                                         <>
-                                            <div className="flex items-center justify-between">
-                                                <p className="text-lg font-semibold">My Cart</p>
-                                                <button aria-label="Close cart" onClick={() => setOpen(false)}>
-                                                    <div
-                                                        className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                             viewBox="0 0 24 24"
-                                                             strokeWidth="1.5" stroke="currentColor" aria-hidden="true"
-                                                             data-slot="icon"
-                                                             className="h-6 transition-all ease-in-out hover:scale-110">
-                                                            <path strokeLinecap="round" strokeLinejoin="round"
-                                                                  d="M6 18 18 6M6 6l12 12"></path>
-                                                        </svg>
-                                                    </div>
-                                                </button>
-                                            </div>
 
                                             <div
                                                 className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
