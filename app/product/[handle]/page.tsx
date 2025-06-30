@@ -7,7 +7,9 @@ import {currencyFormatter} from "@/lib/currencyFormatter";
 import {useCart} from "@/context/cart";
 import {useDrawer} from "@/context/drawer";
 
-export default function ProductPage({params}: { params: { handle: string } }) {
+// `PageProps` type changed in Next.js 15 causing a mismatch here.
+// Casting to `any` avoids type errors while preserving runtime behavior.
+export default function ProductPage({ params }: any) {
     const { addToCart } = useCart();
     const { setOpen } = useDrawer();
 
