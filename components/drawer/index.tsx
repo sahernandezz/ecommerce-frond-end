@@ -40,7 +40,7 @@ export const Drawer = () => {
                             </TransitionChild>
 
                             <div
-                                className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col border-l border-neutral-200 bg-white/80 p-6 text-black backdrop-blur-xl md:w-[450px] dark:border-neutral-700 dark:bg-black/80 dark:text-white">
+                                className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col overflow-y-auto border-l border-neutral-200 bg-white/80 p-6 text-black backdrop-blur-xl md:w-[450px] dark:border-neutral-700 dark:bg-black/80 dark:text-white">
 
                                 {
                                     cart.length === 0 && (
@@ -80,7 +80,7 @@ export const Drawer = () => {
                                 {
                                     cart.length > 0 && (
                                         <>
-                                            <div className="flex h-full flex-col justify-between overflow-hidden p-1">
+                                            <div className="flex h-full flex-col justify-between overflow-y-auto p-1">
                                                 <ul className="flex-grow overflow-auto py-4">
                                                     {
                                                         cart.map((product) => (
