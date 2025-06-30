@@ -6,6 +6,7 @@ import {useTheme} from "next-themes";
 import {useDrawer} from "@/context/drawer";
 import {useCart} from "@/context/cart";
 import {useLoginModal} from "@/context/login-modal";
+import {useState} from "react";
 
 export const Navbar = () => {
 
@@ -13,18 +14,35 @@ export const Navbar = () => {
     const {open, setOpen} = useDrawer();
     const {cart} = useCart();
     const { setOpen: setLoginOpen } = useLoginModal();
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <>
             <nav className="relative flex items-center justify-between p-4 lg:px-6">
                 <div className="block flex-none md:hidden">
                     <button
+                        onClick={() => setMenuOpen(!menuOpen)}
                         className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
-                             stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-4">
-                            <path strokeLinecap="round" strokeLinejoin="round"
-                                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                        </svg>
+                        {menuOpen ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                aria-hidden="true"
+                                data-slot="icon"
+                                className="h-4"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                            </svg>
+                        ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
+                                 stroke="currentColor" aria-hidden="true" data-slot="icon" className="h-4">
+                                <path strokeLinecap="round" strokeLinejoin="round"
+                                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                            </svg>
+                        )}
                     </button>
                 </div>
 
@@ -124,6 +142,26 @@ export const Navbar = () => {
                     </div>
                 </div>
             </nav>
+            {
+                menuOpen && (
+                    <>
+                        <div
+                            className="fixed inset-0 z-30 bg-black/40 md:hidden"
+                            onClick={() => setMenuOpen(false)}
+                        />
+                        <div className="md:hidden absolute left-0 top-0 z-40 w-full bg-white border-b border-neutral-200 shadow dark:bg-black dark:border-neutral-700">
+                            <ul className="flex flex-col gap-2 p-4">
+                                <li>
+                                    <Link href="/" onClick={() => setMenuOpen(false)} className="block p-2">Home</Link>
+                                </li>
+                                <li>
+                                    <Link href="/search" onClick={() => setMenuOpen(false)} className="block p-2">All</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </>
+                )
+            }
         </>
     )
 }
