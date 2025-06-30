@@ -3,7 +3,7 @@ WORKDIR /app
 RUN npm i -g pnpm
 
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
@@ -18,6 +18,8 @@ RUN npm i -g pnpm
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=base /app/package.json ./package.json
 COPY --from=base /app/.next ./.next
+COPY --from=base /app/public ./public
+COPY --from=base /app/next.config.mjs ./next.config.mjs
 
 EXPOSE 3000
 
