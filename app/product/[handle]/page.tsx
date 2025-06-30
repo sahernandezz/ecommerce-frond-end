@@ -80,8 +80,16 @@ export default function ProductPage({ params }: any) {
                 <div className="h-full w-full basis-full lg:basis-4/6">
                     <div>
                         <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
-                            <img src={image?.image} alt="" width={0} height={0} className="h-full w-full object-contain"
-                                 sizes="(min-width: 1024px) 66vw, 100vw"/>
+                            {image.image && (
+                                <img
+                                    src={image.image}
+                                    alt=""
+                                    width={0}
+                                    height={0}
+                                    className="h-full w-full object-contain"
+                                    sizes="(min-width: 1024px) 66vw, 100vw"
+                                />
+                            )}
 
                             <div className="absolute bottom-[15%] flex w-full justify-center">
                                 {

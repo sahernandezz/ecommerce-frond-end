@@ -12,7 +12,7 @@ export default function Home() {
         {
             name: 'Loading...',
             price: 0,
-            imagesUrl: [''],
+            imagesUrl: [],
             id: 0
         }
     ]);
@@ -38,9 +38,14 @@ export default function Home() {
                     <Link href={`/product/${items[0].id.toString()}`} className="relative block aspect-square h-full w-full">
                         <div
                             className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                            <img sizes="(min-width: 768px) 66vw, 100vw"
-                                 className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
-                                 src={items[0].imagesUrl[0]} alt={items[0].name}/>
+                            {items[0].imagesUrl[0] && (
+                                <img
+                                    sizes="(min-width: 768px) 66vw, 100vw"
+                                    className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
+                                    src={items[0].imagesUrl[0]}
+                                    alt={items[0].name}
+                                />
+                            )}
                             <div
                                 className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label lg:px-20 lg:pb-[35%]">
                                 <div
@@ -58,9 +63,14 @@ export default function Home() {
                     <Link href={`/product/${items[0].id.toString()}`} className="relative block aspect-square h-full w-full">
                         <div
                             className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                            <img sizes="(min-width: 768px) 33vw, 100vw"
-                                 className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
-                                 src={items[0].imagesUrl[0]} alt={items[0].name}/>
+                            {items[0].imagesUrl[0] && (
+                                <img
+                                    sizes="(min-width: 768px) 33vw, 100vw"
+                                    className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
+                                    src={items[0].imagesUrl[0]}
+                                    alt={items[0].name}
+                                />
+                            )}
                             <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                 <div
                                     className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
@@ -77,8 +87,14 @@ export default function Home() {
                     <Link href={`/product/${items[0].id.toString()}`} className="relative block aspect-square h-full w-full">
                         <div
                             className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                            <img src={items[0].imagesUrl[0]} alt={items[0].name} sizes="(min-width: 768px) 33vw, 100vw"
-                                 className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"/>
+                            {items[0].imagesUrl[0] && (
+                                <img
+                                    src={items[0].imagesUrl[0]}
+                                    alt={items[0].name}
+                                    sizes="(min-width: 768px) 33vw, 100vw"
+                                    className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
+                                />
+                            )}
                             <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                 <div
                                     className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
@@ -98,9 +114,14 @@ export default function Home() {
                         <Link href={`/product/${items[0].id.toString()}`} className="relative h-full w-full">
                             <div
                                 className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                                <img src={items[0].imagesUrl[0]} alt={items[0].name}
-                                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"/>
+                                {items[0].imagesUrl[0] && (
+                                    <img
+                                        src={items[0].imagesUrl[0]}
+                                        alt={items[0].name}
+                                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                                        className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"
+                                    />
+                                )}
 
                                 <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                     <div
@@ -117,9 +138,14 @@ export default function Home() {
                         <Link href={`/product/${items[0].id.toString()}`} className="relative h-full w-full">
                             <div
                                 className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                                <img src={items[0].imagesUrl[0]} alt={items[0].name}
-                                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"/>
+                                {items[0].imagesUrl[0] && (
+                                    <img
+                                        src={items[0].imagesUrl[0]}
+                                        alt={items[0].name}
+                                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                                        className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"
+                                    />
+                                )}
 
                                 <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                     <div
@@ -136,9 +162,14 @@ export default function Home() {
                         <Link href={`/product/${items[0].id.toString()}`} className="relative h-full w-full">
                             <div
                                 className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                                <img src={items[0].imagesUrl[0]} alt={items[0].name}
-                                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"/>
+                                {items[0].imagesUrl[0] && (
+                                    <img
+                                        src={items[0].imagesUrl[0]}
+                                        alt={items[0].name}
+                                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                                        className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"
+                                    />
+                                )}
 
                                 <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                     <div
@@ -155,9 +186,14 @@ export default function Home() {
                         <Link href={`/product/${items[0].id.toString()}`} className="relative h-full w-full">
                             <div
                                 className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                                <img src={items[0].imagesUrl[0]} alt={items[0].name}
-                                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"/>
+                                {items[0].imagesUrl[0] && (
+                                    <img
+                                        src={items[0].imagesUrl[0]}
+                                        alt={items[0].name}
+                                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                                        className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"
+                                    />
+                                )}
 
                                 <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                     <div
@@ -174,9 +210,14 @@ export default function Home() {
                         <Link href={`/product/${items[0].id.toString()}`} className="relative h-full w-full">
                             <div
                                 className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                                <img src={items[0].imagesUrl[0]} alt={items[0].name}
-                                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"/>
+                                {items[0].imagesUrl[0] && (
+                                    <img
+                                        src={items[0].imagesUrl[0]}
+                                        alt={items[0].name}
+                                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                                        className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"
+                                    />
+                                )}
 
                                 <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                     <div
@@ -193,9 +234,14 @@ export default function Home() {
                         <Link href={`/product/${items[0].id.toString()}`} className="relative h-full w-full">
                             <div
                                 className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                                <img src={items[0].imagesUrl[0]} alt={items[0].name}
-                                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"/>
+                                {items[0].imagesUrl[0] && (
+                                    <img
+                                        src={items[0].imagesUrl[0]}
+                                        alt={items[0].name}
+                                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                                        className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"
+                                    />
+                                )}
 
                                 <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                     <div
@@ -212,9 +258,14 @@ export default function Home() {
                         <Link href={`/product/${items[0].id.toString()}`} className="relative h-full w-full">
                             <div
                                 className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
-                                <img src={items[0].imagesUrl[0]} alt={items[0].name}
-                                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-                                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"/>
+                                {items[0].imagesUrl[0] && (
+                                    <img
+                                        src={items[0].imagesUrl[0]}
+                                        alt={items[0].name}
+                                        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                                        className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-10"
+                                    />
+                                )}
 
                                 <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                                     <div
