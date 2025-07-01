@@ -1,13 +1,14 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import {use, useEffect, useState} from "react";
 import {getProductById} from "@/lib/graphql/query";
 import {ProductAddCart} from "@/lib/types";
 import {currencyFormatter} from "@/lib/currencyFormatter";
 import {useCart} from "@/context/cart";
 import {useDrawer} from "@/context/drawer";
 
-export default function ProductPage({params}: { params: { handle: string } }) {
+export default function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
+    const { handle } = use(params);
     const { addToCart } = useCart();
     const { setOpen } = useDrawer();
 
@@ -38,16 +39,20 @@ export default function ProductPage({params}: { params: { handle: string } }) {
     useEffect(() => {
         const getItems = async () => {
             try {
-                const itemData = await getProductById(params.handle);
-                setItem(itemData);
-                setImage({image: itemData.imagesUrl[0], id: 0});
+                const itemData = await getProductById(handle);
+                if (itemData) {
+                    setItem(itemData);
+                    if (itemData.imagesUrl && itemData.imagesUrl.length > 0) {
+                        setImage({ image: itemData.imagesUrl[0], id: 0 });
+                    }
+                }
             } catch (error) {
                 console.error('Error fetching items:', error);
             }
         };
 
         getItems();
-    }, []);
+    }, [handle]);
 
     useEffect(() => {
         setItem({...item, colors: item?.colors.filter(color => color)});
@@ -78,8 +83,16 @@ export default function ProductPage({params}: { params: { handle: string } }) {
                 <div className="h-full w-full basis-full lg:basis-4/6">
                     <div>
                         <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
-                            <img src={image?.image} alt="" width={0} height={0} className="h-full w-full object-contain"
-                                 sizes="(min-width: 1024px) 66vw, 100vw"/>
+                            {image.image && (
+                                <img
+                                    src={image.image}
+                                    alt=""
+                                    width={0}
+                                    height={0}
+                                    className="h-full w-full object-contain"
+                                    sizes="(min-width: 1024px) 66vw, 100vw"
+                                />
+                            )}
 
                             <div className="absolute bottom-[15%] flex w-full justify-center">
                                 {
@@ -125,7 +138,7 @@ export default function ProductPage({params}: { params: { handle: string } }) {
                             {
                                 item?.imagesUrl.map((imageUrl, index) => (
                                     // eslint-disable-next-line react/jsx-key
-                                    <li className="h-20 w-20">
+                                    <li key={index} className="h-20 w-20">
                                         <button onClick={() => setImage({image: imageUrl, id: index})}
                                                 aria-label="Select product image" className="h-full w-full">
                                             <div
@@ -158,9 +171,9 @@ export default function ProductPage({params}: { params: { handle: string } }) {
                                     <dt className="mb-4 text-sm uppercase tracking-wide">Color</dt>
                                     <dd className="flex flex-wrap gap-3">
                                         {
-                                            item?.colors.map((color) => (
+                                            item?.colors.map((color, index) => (
                                                 // eslint-disable-next-line react/jsx-key
-                                                <button onClick={() => setSelectedColor(color)}
+                                                <button key={index} onClick={() => setSelectedColor(color)}
                                                         title="Size 1"
                                                         disabled={selectedColor === color}
                                                         className="flex min-w-[48px] items-center justify-center ch-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900 ring-1 ring-transparent transition duration-300 ease-in-out hover:ring-blue-600 disabled:ring-blue-600 disabled:cursor-default">{color}
@@ -178,9 +191,9 @@ export default function ProductPage({params}: { params: { handle: string } }) {
                                     <dt className="mb-4 text-sm uppercase tracking-wide">Size</dt>
                                     <dd className="flex flex-wrap gap-3">
                                         {
-                                            item?.sizes.map((size) => (
+                                            item?.sizes.map((size, index) => (
                                                 // eslint-disable-next-line react/jsx-key
-                                                <button onClick={() => setSelectedSize(size)}
+                                                <button key={index} onClick={() => setSelectedSize(size)}
                                                         aria-disabled="false"
                                                         title="Size 1"
                                                         disabled={selectedSize === size}

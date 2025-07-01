@@ -72,12 +72,22 @@ export default function RootLayout({
             <div className="order-none flex-none md:order-last md:w-[125px]">
                 <nav><h3 className="hidden text-xs text-neutral-500 md:block dark:text-neutral-400">Sort by</h3>
                     <ul className="hidden md:block">
-                        <li className="mt-2 flex text-sm text-black dark:text-white"><a
-                            className="w-full hover:underline hover:underline-offset-4"
-                            href="/search/headwear?sort=price-asc">Price: Low to high</a></li>
-                        <li className="mt-2 flex text-sm text-black dark:text-white"><a
-                            className="w-full hover:underline hover:underline-offset-4"
-                            href="/search/headwear?sort=price-desc">Price: High to low</a></li>
+                        <li className="mt-2 flex text-sm text-black dark:text-white">
+                            <Link
+                                className="w-full hover:underline hover:underline-offset-4"
+                                href="/search/headwear?sort=price-asc"
+                            >
+                                Price: Low to high
+                            </Link>
+                        </li>
+                        <li className="mt-2 flex text-sm text-black dark:text-white">
+                            <Link
+                                className="w-full hover:underline hover:underline-offset-4"
+                                href="/search/headwear?sort=price-desc"
+                            >
+                                Price: High to low
+                            </Link>
+                        </li>
                     </ul>
 
                     <ul className="md:hidden">

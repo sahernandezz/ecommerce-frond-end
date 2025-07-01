@@ -32,10 +32,18 @@ export const Cart = ({productSlice}: { productSlice: ProductAddCart }) => {
                 <div className="flex flex-row">
                     <div
                         className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
-                        <img alt="Acme Slip-On Shoes" loading="lazy" width="64" height="64"
-                             decoding="async" data-nimg="1"
-                             className="h-full w-full object-cover"
-                             src={productSlice.imagesUrl[0]}/>
+                        {productSlice.imagesUrl[0] && (
+                            <img
+                                alt="Acme Slip-On Shoes"
+                                loading="lazy"
+                                width="64"
+                                height="64"
+                                decoding="async"
+                                data-nimg="1"
+                                className="h-full w-full object-cover"
+                                src={productSlice.imagesUrl[0]}
+                            />
+                        )}
                     </div>
                     <Link className="z-30 ml-2 flex flex-row space-x-4"
                           href={`/product/${productSlice.id}`}>
@@ -60,8 +68,7 @@ export const Cart = ({productSlice}: { productSlice: ProductAddCart }) => {
                                      stroke="currentColor" aria-hidden="true"
                                      data-slot="icon"
                                      className="h-4 w-4 dark:text-neutral-500">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M5 12h14"></path>
+
                                 </svg>
                             </button>
                             <p aria-live="polite" className="sr-only" role="status"></p>
