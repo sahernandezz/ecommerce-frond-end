@@ -5,7 +5,7 @@ import {currencyFormatter} from "@/lib/currencyFormatter";
 export const Card = ({product}: { product: Product }) => {
 
     return (
-        <li className="aspect-square transition-opacity animate-fadeIn">
+        <li className="aspect-square transition-opacity animate-fade-in">
             <Link href={`/product/${product.id.toString()}`}
                   className="relative inline-block h-full w-full">
                 <div

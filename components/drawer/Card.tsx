@@ -68,8 +68,7 @@ export const Cart = ({productSlice}: { productSlice: ProductAddCart }) => {
                                      stroke="currentColor" aria-hidden="true"
                                      data-slot="icon"
                                      className="h-4 w-4 dark:text-neutral-500">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M5 12h14"></path>
+
                                 </svg>
                             </button>
                             <p aria-live="polite" className="sr-only" role="status"></p>

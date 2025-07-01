@@ -138,7 +138,7 @@ export default function ProductPage({ params }: { params: Promise<{ handle: stri
                             {
                                 item?.imagesUrl.map((imageUrl, index) => (
                                     // eslint-disable-next-line react/jsx-key
-                                    <li className="h-20 w-20">
+                                    <li key={index} className="h-20 w-20">
                                         <button onClick={() => setImage({image: imageUrl, id: index})}
                                                 aria-label="Select product image" className="h-full w-full">
                                             <div
@@ -171,9 +171,9 @@ export default function ProductPage({ params }: { params: Promise<{ handle: stri
                                     <dt className="mb-4 text-sm uppercase tracking-wide">Color</dt>
                                     <dd className="flex flex-wrap gap-3">
                                         {
-                                            item?.colors.map((color) => (
+                                            item?.colors.map((color, index) => (
                                                 // eslint-disable-next-line react/jsx-key
-                                                <button onClick={() => setSelectedColor(color)}
+                                                <button key={index} onClick={() => setSelectedColor(color)}
                                                         title="Size 1"
                                                         disabled={selectedColor === color}
                                                         className="flex min-w-[48px] items-center justify-center ch-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900 ring-1 ring-transparent transition duration-300 ease-in-out hover:ring-blue-600 disabled:ring-blue-600 disabled:cursor-default">{color}
@@ -191,9 +191,9 @@ export default function ProductPage({ params }: { params: Promise<{ handle: stri
                                     <dt className="mb-4 text-sm uppercase tracking-wide">Size</dt>
                                     <dd className="flex flex-wrap gap-3">
                                         {
-                                            item?.sizes.map((size) => (
+                                            item?.sizes.map((size, index) => (
                                                 // eslint-disable-next-line react/jsx-key
-                                                <button onClick={() => setSelectedSize(size)}
+                                                <button key={index} onClick={() => setSelectedSize(size)}
                                                         aria-disabled="false"
                                                         title="Size 1"
                                                         disabled={selectedSize === size}

@@ -1,6 +1,6 @@
 import type {Metadata} from "next";
 import "./globals.css";
-import {Navbar} from "@/components/navbar/index";
+import {Navbar} from "@/components/navbar";
 import {Footer} from "@/components/footer";
 import {ThemeProvider} from "next-themes";
 import { CartProvider } from "@/context/cart";
