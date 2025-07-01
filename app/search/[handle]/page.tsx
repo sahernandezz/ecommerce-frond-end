@@ -5,9 +5,8 @@ import {getAllProductsActive, getAllProductsActiveByCategoryId} from "@/lib/grap
 import {Product} from "@/lib/types";
 import {Card} from "@/components/card";
 
-// `PageProps` typing in Next.js 15 expects Promises. Cast to `any` to avoid type issues.
 export default function SearchByPage ({ params }: { params: Promise<{ handle: string }> }) {
-    const { handle } = use<{ handle: string }>(params);
+    const { handle } = use(params);
 
     const [items, setItems] = useState([]);
 
