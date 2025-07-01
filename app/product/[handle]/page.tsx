@@ -42,15 +42,19 @@ export default function ProductPage({ params }: { params: Promise<{ handle: stri
         const getItems = async () => {
             try {
                 const itemData = await getProductById(handle);
-                setItem(itemData);
-                setImage({image: itemData.imagesUrl[0], id: 0});
+                if (itemData) {
+                    setItem(itemData);
+                    if (itemData.imagesUrl && itemData.imagesUrl.length > 0) {
+                        setImage({ image: itemData.imagesUrl[0], id: 0 });
+                    }
+                }
             } catch (error) {
                 console.error('Error fetching items:', error);
             }
         };
 
         getItems();
-    }, []);
+    }, [handle]);
 
     useEffect(() => {
         setItem({...item, colors: item?.colors.filter(color => color)});

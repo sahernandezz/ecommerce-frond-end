@@ -15,14 +15,16 @@ export default function SearchByPage ({ params }: { params: Promise<{ handle: st
         const getItems = async () => {
             try {
                 const itemsData = await getAllProductsActiveByCategoryId(handle);
-                setItems(itemsData);
+                if (itemsData) {
+                    setItems(itemsData);
+                }
             } catch (error) {
                 console.error('Error fetching items:', error);
             }
         };
 
         getItems();
-    }, []);
+    }, [handle]);
 
     return (
         <>
