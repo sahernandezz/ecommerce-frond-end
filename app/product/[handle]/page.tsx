@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import {use, useEffect, useState} from "react";
 import {getProductById} from "@/lib/graphql/query";
 import {ProductAddCart} from "@/lib/types";
 import {currencyFormatter} from "@/lib/currencyFormatter";
@@ -9,7 +9,8 @@ import {useDrawer} from "@/context/drawer";
 
 // `PageProps` type changed in Next.js 15 causing a mismatch here.
 // Casting to `any` avoids type errors while preserving runtime behavior.
-export default function ProductPage({ params }: any) {
+export default function ProductPage({ params }: { params: Promise<{ handle: string }> }) {
+    const { handle } = use<{ handle: string }>(params);
     const { addToCart } = useCart();
     const { setOpen } = useDrawer();
 
@@ -40,7 +41,7 @@ export default function ProductPage({ params }: any) {
     useEffect(() => {
         const getItems = async () => {
             try {
-                const itemData = await getProductById(params.handle);
+                const itemData = await getProductById(handle);
                 setItem(itemData);
                 setImage({image: itemData.imagesUrl[0], id: 0});
             } catch (error) {
